@@ -89,7 +89,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Header />
       <Main>
-{/*         <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <StyledTextField
             id="name"
             label={nameError ? "ERROR" : "Name"}
@@ -174,7 +174,7 @@ function App() {
           <StyledButton type="submit" variant="contained">
             Sign Up
           </StyledButton>
-        </form> */}
+        </form>
       </Main>
     </ThemeProvider>
   );
