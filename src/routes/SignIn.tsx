@@ -4,7 +4,6 @@ import Button from "@mui/material/Button";
 import "@fontsource/roboto/700.css";
 import { TextField, IconButton } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import KeyIcon from "@mui/icons-material/Key";
 import Visibility from "@mui/icons-material/Visibility";
@@ -16,23 +15,19 @@ import { useNavigate } from "react-router-dom";
 import { Snackbar, Alert } from "@mui/material";
 import { ThreeDots } from "react-loader-spinner";
 
-function SignUp() {
+function SignIn() {
   const { width } = useWindowSize();
 
-  const [nameIsFocus, setNameIsFocus] = useState(false);
   const [emailIsFocus, setEmailIsFocus] = useState(false);
   const [passwordIsFocus, setPasswordIsFocus] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [nameHasError, setNameHasError] = useState(false);
   const [emailHasError, setEmailHasError] = useState(false);
   const [passwordHasError, setPasswordHasError] = useState(false);
 
-  const nameErrorMsg = "Preencha o campo name";
   const emailErrorMsg = "Email inválido";
   const passwordErrorMsg = "Senha com mínimo de 6 caracteres";
 
@@ -41,7 +36,7 @@ function SignUp() {
   const [axiosSuccess, setAxiosSuccess] = useState(false);
   const [errMsg, setErrMsg] = useState("");
 
-  const nameRef = useRef<HTMLDivElement | null>(null);
+  const emailRef = useRef<HTMLDivElement | null>(null);
 
   const navigate = useNavigate();
 
@@ -66,17 +61,7 @@ function SignUp() {
     error && setError(false);
     setFunction(value);
   };
-  const validateName = (name: string) => {
-    // Aqui você pode adicionar suas regras de validação para o campo de nome
-    if (name.trim() === "") {
-      setNameHasError(true);
-      return false;
-    } else {
-      setNameHasError(false);
-      return true;
-    }
-  };
-
+  
   const validateEmail = (email: string) => {
     // Aqui você pode adicionar suas regras de validação para o campo de e-mail
     if (!/\S+@\S+\.\S+/.test(email)) {
@@ -105,17 +90,16 @@ function SignUp() {
     try {
       setIsLoading(true);
       // Validação dos campos antes do envio
-      const isValidName = validateName(name);
       const isValidEmail = validateEmail(email);
       const isValidPassword = validatePassword(password);
 
-      if (!isValidName || !isValidEmail || !isValidPassword) return;
-      const body = { name, email, password };
+      if (!isValidEmail || !isValidPassword) return;
+      const body = { email, password };
 
-      await axiosPrivate.post("/signup", body);
+      await axiosPrivate.post("/signin", body);
 
       setAxiosSuccess(true);
-      setErrMsg("Account Created");
+      setErrMsg("Signed in");
       setTimeout(() => navigate("/", { replace: true }), 3500);
     } catch (err: any) {
       console.log(err);
@@ -141,11 +125,10 @@ function SignUp() {
     setTimeout(() => setErrMsg(""), 500);
   };
   useEffect(() => {
-    if (nameRef.current) {
-      nameRef.current.focus();
+    if (emailRef.current) {
+      emailRef.current.focus();
     }
   }, []);
-  
   useEffect(() => {
     errMsg ? setShowSnackbar(true) : setShowSnackbar(false);
   }, [errMsg]);
@@ -159,9 +142,10 @@ function SignUp() {
           onClose={handleSnackbarClose}
           anchorOrigin={{
             vertical: "bottom",
-            horizontal: "center",
+            horizontal: "left",
           }}
           transitionDuration={500}
+          action={<Button onClick={handleSnackbarClose}>Close</Button>}
         >
           <Alert
             severity={axiosSuccess ? "success" : "error"}
@@ -171,36 +155,10 @@ function SignUp() {
             {errMsg}
           </Alert>
         </Snackbar>
-        <StyledTextField
-          id="name"
-          disabled={isLoading}
-          ref={nameRef}
-          label={nameHasError ? "ERROR" : "Name"}
-          variant="outlined"
-          onFocus={() => handleFocus(setNameIsFocus)}
-          onBlur={() => handleBlur(setNameIsFocus)}
-          error={nameHasError}
-          helperText={nameHasError && nameErrorMsg}
-          value={name}
-          onChange={(event) =>
-            handleChange(
-              setName,
-              event.target.value,
-              setNameHasError,
-              nameHasError
-            )
-          }
-          autoComplete="off"
-          InputProps={{
-            startAdornment: nameIsFocus && (
-              <InputAdornment position="start">
-                <AccountCircle />
-              </InputAdornment>
-            ),
-          }}
-        />
+       
         <StyledTextField
           id="email"
+          ref={emailRef}
           disabled={isLoading}
           label={emailHasError ? "ERROR" : "Email"}
           variant="outlined"
@@ -273,7 +231,7 @@ function SignUp() {
               visible={true}
             />
           ) : (
-            "Sign Up"
+            "Sign In"
           )}
         </StyledButton>
       </form>
@@ -309,4 +267,4 @@ const StyledButton = styled(Button)`
   height: 45px;
 `;
 
-export default SignUp;
+export default SignIn;
