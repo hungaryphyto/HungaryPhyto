@@ -4,6 +4,7 @@ import RedirectIfAuth from "./components/redirects/RedirectIfAuth.tsx";
 import RequireAuth from "./components/redirects/RequireAuth.tsx";
 import Layout from "./components/Layout.tsx";
 import Home from "./routes/Home.tsx";
+import SignUp from "./routes/SignUp.tsx";
 
 function App() {
   return (
@@ -13,14 +14,13 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route element={<RequireAuth />}>
             {/* Abaixo rotas protegidas, apenas logado pode acessar */}
-
+          </Route>
+          <Route element={<RedirectIfAuth />}>
+            <Route path="/signup" element={<SignUp />} />
+            {/* Abaixo redirecionar caso esteja logado */}
           </Route>
         </Route>
-        <Route element={<RedirectIfAuth />}>
-          {/* Abaixo redirecionar caso esteja logado */}
-
-          </Route>
-        </Route>
+      </Route>
     </Routes>
   );
 }

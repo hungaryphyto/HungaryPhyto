@@ -1,19 +1,25 @@
 import { Box, styled } from '@mui/material';
-import logo from '../assets/HPTNBG.png'
+import logo from '../assets/HPTNBG.png';
 import Menu from './Menu';
+import useWindowSize from '../hooks/useWindowSize';
 
 const Header = () => {
+    const { width } = useWindowSize();
     return (
-        <HeaderContainer>
+        <HeaderContainer width={width}>
             <img src={logo} alt="HungaryPhyto" />
-            <h1>HungaryPhyto</h1>
+            {width && width >= 500 ? <h1>HungaryPhyto</h1> : width && width >= 300 && <h1>H P T</h1>}
             <Menu />
         </HeaderContainer>
     );
 };
 
-const HeaderContainer = styled(Box)`
-    width: 100dvw;
+interface HeaderContainerProps {
+    width?: number;
+}
+
+const HeaderContainer = styled(Box)<HeaderContainerProps>`
+    width: 100vw;
     height: 150px;
     position: relative;
     display: flex;
@@ -30,8 +36,8 @@ const HeaderContainer = styled(Box)`
     h1 {
         color: white;
         font-family: 'Fasthand', cursive;
-        font-size: 80px;
+        font-size: ${props => props?.width && props.width >= 600 ? "80px" : "60px"};
     }
-`
+`;
 
 export default Header;
