@@ -1,21 +1,7 @@
 import { Box, styled } from "@mui/material";
-import { useAuth0 } from "@auth0/auth0-react";
-import Button from "@mui/material/Button";
 
 const Menu = () => {
-  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
-
-    console.log(user)
-
-  return (
-    <Aside>
-      {isAuthenticated ? (
-        <StyledButton variant="contained" onClick={() => logout()}>Logout</StyledButton>
-      ) : (
-        <StyledButton variant="contained" onClick={() => loginWithRedirect()}>Login</StyledButton>
-      )}
-    </Aside>
-  );
+  return <Aside></Aside>;
 };
 
 const Aside = styled(Box)`
@@ -27,10 +13,6 @@ const Aside = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const StyledButton = styled(Button)`
-  width: 100%;
 `;
 
 export default Menu;
