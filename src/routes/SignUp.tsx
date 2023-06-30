@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { Snackbar, Alert } from "@mui/material";
 import { ThreeDots } from "react-loader-spinner";
 
-function App() {
+function SignIn() {
   const { width } = useWindowSize();
 
   const [nameIsFocus, setNameIsFocus] = useState(false);
@@ -154,10 +154,9 @@ function App() {
           onClose={handleSnackbarClose}
           anchorOrigin={{
             vertical: "bottom",
-            horizontal: "left",
+            horizontal: "center",
           }}
           transitionDuration={500}
-          action={<Button onClick={handleSnackbarClose}>Close</Button>}
         >
           <Alert
             severity={axiosSuccess ? "success" : "error"}
@@ -305,4 +304,4 @@ const StyledButton = styled(Button)`
   height: 45px;
 `;
 
-export default App;
+export default SignIn;
