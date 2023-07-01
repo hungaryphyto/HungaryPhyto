@@ -10,7 +10,7 @@ import SignIn from "./routes/SignIn.tsx";
 function App() {
   return (
     <Routes>
-      <Route element={<PersistLogin />}>
+      {/* <Route element={<PersistLogin />}> */}
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route element={<RequireAuth />}>
@@ -23,7 +23,7 @@ function App() {
             
           </Route>
         </Route>
-      </Route>
+      {/* </Route> */}
     </Routes>
   );
 }
