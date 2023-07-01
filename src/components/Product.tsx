@@ -17,19 +17,18 @@ interface ProductComponentProps {
 }
 
 function formatCurrency(value: number): string {
-    const formattedValue = value.toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    });
-  
-    return formattedValue;
-  }
+  const formattedValue = value.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+
+  return formattedValue;
+}
 
 const ProductComponent: React.FC<ProductComponentProps> = ({ product }) => {
   console.log(product);
   return (
     <ProductContainer>
-
       <h1>{product.name}</h1>
       <h2>{product.concentration} mg/ml</h2>
       <h2>10ml</h2>
@@ -38,7 +37,11 @@ const ProductComponent: React.FC<ProductComponentProps> = ({ product }) => {
       </span>
       <h2>{product.inStock ? "Em Estoque" : "Esgotado"}</h2>
       <h2>{product.inStock && formatCurrency(product.value)} </h2>
-      <h3>{product.inStock && product.discount !== 0.00 ? `Desconto: ${formatCurrency(product.discount)}` : "Enviamos para todo BR" }</h3>
+      <h3>
+        {product.inStock && product.discount !== 0.0
+          ? `Desconto: ${formatCurrency(product.discount)}`
+          : "Enviamos para todo BR"}
+      </h3>
     </ProductContainer>
   );
 };

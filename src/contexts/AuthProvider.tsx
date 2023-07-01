@@ -21,7 +21,10 @@ const AuthContext = createContext<AuthContextType>({
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [auth, setAuth] = useState({});
-  const [tokenOnStorage, setTokenOnStorage] = useLocalStorage("refreshToken", "");
+  const [tokenOnStorage, setTokenOnStorage] = useLocalStorage(
+    "refreshToken",
+    ""
+  );
   const [cookiesAccepted, setCookiesAccepted] = useState("");
 
   return (

@@ -11,18 +11,17 @@ function App() {
   return (
     <Routes>
       {/* <Route element={<PersistLogin />}> */}
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route element={<RequireAuth />}>
-            {/* Abaixo rotas protegidas, apenas logado pode acessar */}
-          </Route>
-          <Route element={<RedirectIfAuth />}>
-            {/* Abaixo redirecionar caso esteja logado */}
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/signin" element={<SignIn />} />
-            
-          </Route>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route element={<RequireAuth />}>
+          {/* Abaixo rotas protegidas, apenas logado pode acessar */}
         </Route>
+        <Route element={<RedirectIfAuth />}>
+          {/* Abaixo redirecionar caso esteja logado */}
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+        </Route>
+      </Route>
       {/* </Route> */}
     </Routes>
   );

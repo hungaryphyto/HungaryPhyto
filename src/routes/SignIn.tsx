@@ -61,7 +61,7 @@ function SignIn() {
     error && setError(false);
     setFunction(value);
   };
-  
+
   const validateEmail = (email: string) => {
     // Aqui você pode adicionar suas regras de validação para o campo de e-mail
     if (!/\S+@\S+\.\S+/.test(email)) {
@@ -155,7 +155,7 @@ function SignIn() {
             {errMsg}
           </Alert>
         </Snackbar>
-       
+
         <StyledTextField
           id="email"
           ref={emailRef}

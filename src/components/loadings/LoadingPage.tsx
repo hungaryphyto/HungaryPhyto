@@ -1,10 +1,5 @@
-
 const LoadingPage = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+  return <div></div>;
 };
 
 export default LoadingPage;

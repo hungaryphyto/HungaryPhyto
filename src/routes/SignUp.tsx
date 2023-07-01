@@ -145,7 +145,7 @@ function SignUp() {
       nameRef.current.focus();
     }
   }, []);
-  
+
   useEffect(() => {
     errMsg ? setShowSnackbar(true) : setShowSnackbar(false);
   }, [errMsg]);
