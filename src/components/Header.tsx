@@ -19,7 +19,9 @@ interface HeaderContainerProps {
 }
 
 const HeaderContainer = styled(Box)<HeaderContainerProps>`
-    width: 100vw;
+    position: absolute;
+    top: 0;
+    width: 100dvw;
     height: 150px;
     position: relative;
     display: flex;

@@ -6,16 +6,23 @@ import { Box } from "@mui/system";
 const Layout = () => {
   
   return (
-    <>
+    <Container>
       <Header />
       <Main>
         <Outlet />
       </Main>
-    </>
+    </Container>
   );
 };
 
+const Container = styled(Box)`
+  width: 100dvw;
+  height: 100dvh;
+  position: relative;
+`
 const Main = styled(Box)`
+  position: absolute;
+  bottom: 0;
   width: 100dvw;
   height: calc(100dvh - 150px);
   padding: 20px;
@@ -23,6 +30,9 @@ const Main = styled(Box)`
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: scroll;
+  padding-top: 20px;
+  margin-top: 20px;
 `;
 
 export default Layout;
