@@ -7,7 +7,8 @@ const MainContainer = styled("main")`
   flex-wrap: wrap;
   justify-content: center;
   gap: 16px;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   height: 100%;
 `;
 

@@ -30,7 +30,7 @@ const Main = styled(Box)`
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: scroll;
+  overflow: hidden;
   padding-top: 20px;
   margin-top: 20px;
 `;
