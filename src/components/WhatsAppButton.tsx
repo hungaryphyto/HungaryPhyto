@@ -9,18 +9,18 @@ const whatsappIconStyle = {
 
 const WhatsAppButton = () => {
 
-    // Número de telefone para o qual você deseja enviar a mensagem
-    const phoneNumber = "+5511999046316";
-    const message= "Olá, isto é um teste!"
-  
-    // Construa a URL do WhatsApp com o número de telefone e a mensagem pré-definida
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-  
-    return (
-      <Link to={whatsappUrl} target="_blank" rel="noopener noreferrer">
-        <WhatsAppIcon style={whatsappIconStyle} />
-      </Link>
-    );
-  };
-  
-  export default WhatsAppButton;
+  // Número de telefone para o qual você deseja enviar a mensagem
+  const phoneNumber = import.meta.env.VITE_REACT_WPP_NUMBER
+  const message = import.meta.env.VITE_REACT_WPP_MSG
+
+  // Construa a URL do WhatsApp com o número de telefone e a mensagem pré-definida
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+
+  return (
+    <Link to={whatsappUrl} target="_blank" rel="noopener noreferrer">
+      <WhatsAppIcon style={whatsappIconStyle} />
+    </Link>
+  );
+};
+
+export default WhatsAppButton;
